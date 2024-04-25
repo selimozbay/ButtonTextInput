@@ -10,16 +10,12 @@ public class generalScript : MonoBehaviour
 
     public Text genislik, camAdedi, yukseklik;
     public TextMeshProUGUI sonucYazisi, uyari;
-    int standartCamGenisligi = 60, dusulecekYukseklik = 85, dusulecekAraBosluk = 5, dusulecekDikmePayi = 23;
+    private int dusulecekYukseklik = 85, dusulecekAraBosluk = 5, dusulecekDikmePayi = 23;
     void Start()
-    {
-
-    }
+    {}
 
     void Update()
-    {
-
-    }
+    {}
 
     public void Hesapla()
     {
@@ -38,6 +34,7 @@ public class generalScript : MonoBehaviour
         if (girilenGenislik == "" || girilenYukseklik == "" || girilenAdet == "")
         {
             uyari.text = "Genişlik, Yükseklik ve Adet\nalanlarını doldurunuz!";
+            sonucYazisi.text = "";
             StartCoroutine(uyariGecikmesi());
         }
         else
@@ -45,16 +42,13 @@ public class generalScript : MonoBehaviour
 
             yuk = int.Parse(girilenYukseklik) - dusulecekYukseklik;
             ad = int.Parse(girilenAdet);
-            int toplamCam = int.Parse(girilenGenislik) / int.Parse(girilenAdet);
-            //Hesaplama Devam
+            gen = int.Parse(girilenGenislik);
+            gen = (gen / ad) - (2 * dusulecekDikmePayi) - (dusulecekAraBosluk * (ad - 1));
 
+            m2 = (gen * yuk * ad) / 1000000f;
 
-
-
+            sonucYazisi.text = gen + "mm x " + yuk + "mm  -> " + ad + " Adet\nToplam " + m2 + "m²";
         }
-
-        Debug.Log(girilenGenislik);
-
     }
 
 }
